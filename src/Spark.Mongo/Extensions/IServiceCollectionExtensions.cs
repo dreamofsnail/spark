@@ -27,6 +27,7 @@ namespace Spark.Mongo.Extensions
             services.TryAddTransient<IFhirStoreAdministration>((provider) => new MongoStoreAdministration(settings.ConnectionString));
             services.TryAddTransient<MongoIndexMapper>();
             services.TryAddTransient<IIndexStore>((provider) => new MongoIndexStore(settings.ConnectionString, provider.GetRequiredService<MongoIndexMapper>()));
+            services.TryAddTransient<IAsyncIndexStore>((provider) => new MongoIndexStore(settings.ConnectionString, provider.GetRequiredService<MongoIndexMapper>()));
             services.TryAddTransient((provider) => new MongoIndexStore(settings.ConnectionString, provider.GetRequiredService<MongoIndexMapper>()));
             services.TryAddTransient((provider) => DefinitionsFactory.Generate(ModelInfo.SearchParameters));
             services.TryAddTransient<MongoSearcher>();

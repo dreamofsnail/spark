@@ -1,4 +1,12 @@
-﻿using MongoDB.Bson;
+﻿/*
+ * Copyright (c) 2020-2021, Incendi (info@incendi.no) and contributors
+ * See the file CONTRIBUTORS for details.
+ *
+ * This file is licensed under the BSD 3-Clause license
+ * available at https://raw.githubusercontent.com/FirelyTeam/spark/stu3/master/LICENSE
+ */
+
+using MongoDB.Bson;
 using MongoDB.Driver;
 using Spark.Engine.Core;
 using System.Threading.Tasks;
@@ -9,11 +17,11 @@ using Spark.Engine.Store.Interfaces;
 
 namespace Spark.Mongo.Search.Common
 {
-    public class MongoIndexStore : IIndexStore
+    public class MongoIndexStore : IIndexStore, IAsyncIndexStore
     {
-        private IMongoDatabase _database;
-        private MongoIndexMapper _indexMapper;
-        public IMongoCollection<BsonDocument> Collection;
+        private readonly IMongoDatabase _database;
+        private readonly MongoIndexMapper _indexMapper;
+        public readonly IMongoCollection<BsonDocument> Collection;
 
         public MongoIndexStore(string mongoUrl, MongoIndexMapper indexMapper)
         {
